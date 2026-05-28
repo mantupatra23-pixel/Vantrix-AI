@@ -1,235 +1,260 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Terminal, Cpu, Shield, Activity, Network, Layers, ExternalLink, Flame } from 'lucide-react';
 
 export default function Home() {
-  const [terminalLog, setTerminalLog] = useState('INITIALIZING NEURAL NETWORK...');
+  const [terminalLog, setTerminalLog] = useState('SYS_INIT // BOOTSTRAP SUCCESSFUL');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const [sysMetrics, setSysMetrics] = useState({ cpu: '42.1%', net: '894 kb/s', mem: '3.1 GB' });
 
-  // Simulator for real-time AI node activities
+  // Core background metric loops simulation
   useEffect(() => {
     const logs = [
-      'SYS_CORE: Synchronizing Neural Pipeline v0.91...',
-      'MODEL_LOG: Allocating compute instances to global nodes...',
-      'SECURE_ROUTE: CNAME mapping active on secure layer...',
-      'PIPELINE: Sub-second latency parameters verified.',
-      'AI_AGENT: Scanning client intent patterns... Ready.',
-      'VANTRIX_CORE: Systems nominal. Port 3000 online.'
+      'CORE_NET: Synced to global node mesh network...',
+      'SECURE_TUNNEL: Advanced encryption layer loaded (AES-256)...',
+      'HYPER_CONCURRENCY: Dynamic microservice balancing running...',
+      'AI_AGENT: Script matrices optimizing client input workflows...',
+      'NODE_METRIC: Pipeline operational latency < 12ms nominal.'
     ];
     let index = 0;
     const interval = setInterval(() => {
       setTerminalLog(logs[index]);
       index = (index + 1) % logs.length;
-    }, 3500);
+      
+      // Dynamic randomizing metrics to make the page feel alive and moving
+      setSysMetrics({
+        cpu: `${(Math.random() * 30 + 30).toFixed(1)}%`,
+        net: `${Math.floor(Math.random() * 400 + 600)} kb/s`,
+        mem: `${(Math.random() * 0.8 + 2.8).toFixed(1)} GB`
+      });
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('ENCRYPTING PAYLOAD...');
+    setSubmitStatus('SYS_PACKING: ENCRYPTING DATA STREAMS...');
     
     setTimeout(() => {
-      setSubmitStatus('ROUTING LEAD VIA SECURE API...');
+      setSubmitStatus('ROUTING PROTOCOL: BROADCASTING VIA GATEWAY...');
       setTimeout(() => {
-        setSubmitStatus('SUCCESS: OPERATIONAL LOG DEPLOYED!');
-        // Redirecting directly to WhatsApp with automation trigger
-        window.location.href = "https://wa.me/919178065739?text=Hi%20Vantrix%20AI,%20I%20just%20submitted%20my%20operational%20requirements%20on%20the%20console.%20Let's%20blueprint.";
-      }, 1200);
-    }, 1200);
+        setSubmitStatus('SUCCESS: DEPLOYMENT METADATA REPLICATED!');
+        window.location.href = "https://wa.me/919178065739?text=SYSTEM_TRIGGER%3A%20Vantrix%20AI%20Console%20Payload%20Submitted.%20Initialize%20Strategy%20Protocol.";
+      }, 1000);
+    }, 1000);
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-emerald-500 selection:text-slate-950 scroll-smooth relative overflow-hidden">
+    <div className="min-h-screen bg-[#020617] text-slate-100 font-mono selection:bg-emerald-500 selection:text-slate-950 scroll-smooth relative overflow-hidden">
       
-      {/* Dynamic Ambient AI Nebulas */}
-      <div className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none z-0" />
-      <div className="absolute top-[40%] right-[-10%] w-[50vw] h-[50vw] bg-teal-500/10 blur-[140px] rounded-full pointer-events-none z-0" />
-      <div className="absolute bottom-[-10%] left-[10%] w-[45vw] h-[45vw] bg-emerald-600/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      {/* Absolute Cyber Grid Backdrop Layers */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none opacity-40" />
+      
+      {/* Sci-Fi Floating Nebula Core Lights */}
+      <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-emerald-500/5 blur-[160px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-[30%] right-[-20%] w-[60vw] h-[60vw] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none z-0" />
 
-      {/* Glassmorphic Navbar */}
-      <header className="border-b border-emerald-500/10 sticky top-0 bg-slate-950/70 backdrop-blur-xl z-50 shadow-xl shadow-emerald-950/10">
-        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 rounded-full bg-slate-950 border border-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.6)] flex items-center justify-center">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></div>
+      {/* Futuristic Tactical Top Navigation */}
+      <header className="border-b border-emerald-500/10 sticky top-0 bg-[#020617]/80 backdrop-blur-xl z-50 shadow-2xl shadow-black/80">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3 group">
+            <div className="relative w-6 h-6 rounded-lg bg-slate-950 border border-emerald-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+              <div className="w-2 h-2 rounded-sm bg-emerald-400 animate-pulse"></div>
             </div>
-            <div className="text-2xl font-black tracking-wider bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-              VANTRIX AI
+            <div className="text-xl font-black tracking-widest bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent uppercase">
+              Vantrix_OS
             </div>
           </div>
+          
+          {/* Side Status Diagnostics for Live Feel */}
+          <div className="hidden lg:flex items-center gap-6 text-[10px] text-slate-500 border-l border-slate-900 pl-6">
+            <div>CPU: <span className="text-emerald-400 font-bold">{sysMetrics.cpu}</span></div>
+            <div>NET: <span className="text-cyan-400 font-bold">{sysMetrics.net}</span></div>
+            <div>MEM: <span className="text-emerald-400 font-bold">{sysMetrics.mem}</span></div>
+          </div>
+
           <a 
             href="#consultation" 
-            className="relative inline-flex items-center justify-center px-5 py-2.5 overflow-hidden font-bold text-slate-950 transition duration-300 ease-out rounded-xl shadow-xl group"
+            className="border border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/20 text-emerald-400 px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(16,185,129,0.05)]"
           >
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-emerald-400 to-teal-500"></span>
-            <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-emerald-300 opacity-30 group-hover:rotate-90 ease"></span>
-            <span className="relative text-sm font-black tracking-wide">Launch Agent</span>
+            Launch_Agent_
           </a>
         </div>
       </header>
 
-      {/* AI Terminal Status Ticker */}
-      <div className="w-full bg-emerald-950/20 border-b border-emerald-500/10 py-2.5 px-6 z-10 relative">
-        <div className="max-w-6xl mx-auto flex items-center gap-3 text-[11px] font-mono tracking-widest text-emerald-400 font-bold">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span>
-          <span className="text-slate-500 uppercase">LIVE_MONITOR:</span>
-          <span className="animate-fade-in transition-all uppercase">{terminalLog}</span>
+      {/* Active System Ticker Log Matrix Banner */}
+      <div className="w-full bg-emerald-950/10 border-b border-emerald-500/5 py-3 px-6 z-10 relative backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto flex items-center gap-3 text-[10px] tracking-widest text-emerald-400/80 font-bold">
+          <Terminal className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+          <span className="text-slate-600 uppercase font-black">STREAMS://</span>
+          <span className="uppercase tracking-normal font-medium text-slate-300">{terminalLog}</span>
         </div>
       </div>
 
-      {/* Cyber Hero Console */}
-      <section className="relative pt-24 pb-20 px-6 z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/5 border border-emerald-500/20 text-xs font-semibold tracking-wider text-emerald-400 uppercase">
-            <span className="w-2 h-2 rounded-full bg-emerald-400"></span> Production Pipeline Operational
-          </div>
-          <h1 className="text-4xl md:text-7xl font-black tracking-tight leading-[1.1] font-mono">
-            Autonomous AI & <br />
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(52,211,153,0.25)]">
-              {'> Code Architectures_'}
-            </span>
-          </h1>
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            We engineer complex multi-tenant SaaS environments, custom algorithmic workflows, and cognitive database engines to scale enterprise velocity.
-          </p>
-          <div className="pt-6">
-            <a 
-              href="#consultation" 
-              className="px-8 py-4 rounded-xl border border-emerald-500/30 text-emerald-400 font-bold bg-emerald-500/5 hover:bg-emerald-500/10 hover:border-emerald-400/60 shadow-[0_0_30px_rgba(52,211,153,0.05)] transition-all duration-300 text-base tracking-wide"
-            >
-              Initialize System Architecture &rarr;
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Metrics Node Grid */}
-      <section className="border-y border-slate-900 bg-slate-900/10 backdrop-blur-sm py-14 px-6 z-10 relative">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center font-mono">
-          <div className="space-y-1">
-            <div className="text-4xl md:text-5xl font-black text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]">50+</div>
-            <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Deployments Executed</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-4xl md:text-5xl font-black text-teal-400 drop-shadow-[0_0_15px_rgba(45,212,191,0.3)]">30+</div>
-            <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Active Data Clusters</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-4xl md:text-5xl font-black text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]">5+ Yrs</div>
-            <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Full-Stack R&D</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cyber Systems Grid */}
-      <section className="py-28 px-6 max-w-6xl mx-auto space-y-16 z-10 relative">
-        <div className="text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight font-mono">System Core Specializations</h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Custom computational structures engineered for zero performance lag.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <div className="bg-slate-900/20 border border-slate-900 p-8 rounded-2xl space-y-4 hover:border-emerald-500/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(52,211,153,0.1)] transition-all duration-300 group">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg group-hover:bg-emerald-500/20 transition-all">01</div>
-            <div className="text-xl font-bold tracking-wide text-slate-100">Custom Software</div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Enterprise custom CRMs, intelligent data-driven ERP structures, rapid administration visualization panels, and robust asynchronous backend frameworks.
-            </p>
-          </div>
-
-          <div className="bg-slate-900/20 border border-slate-900 p-8 rounded-2xl space-y-4 hover:border-teal-500/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(45,212,191,0.1)] transition-all duration-300 group">
-            <div className="w-10 h-10 rounded-xl bg-teal-500/5 border border-teal-500/20 flex items-center justify-center text-teal-400 font-mono font-bold text-lg group-hover:bg-teal-500/20 transition-all">02</div>
-            <div className="text-xl font-bold tracking-wide text-slate-100">AI Automation</div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Autonomous cognitive loop setups, predictive script layers, intelligent routing mechanics, and behavioral automation systems built for business optimization.
-            </p>
-          </div>
-
-          <div className="bg-slate-900/20 border border-slate-900 p-8 rounded-2xl space-y-4 hover:border-emerald-500/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:shadow-[0_0_30px_rgba(52,211,153,0.1)] transition-all duration-300 group">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono font-bold text-lg group-hover:bg-emerald-500/20 transition-all">03</div>
-            <div className="text-xl font-bold tracking-wide text-slate-100">SaaS Engines</div>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Cloud-native server architectures, specialized micro-commission billing algorithms, distributed databases, and completely secure scaling ecosystems.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Node Deployments Portfolio */}
-      <section className="py-28 px-6 max-w-6xl mx-auto space-y-16 border-t border-slate-900/60 z-10 relative">
-        <div className="text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight font-mono">Active Node Invocations</h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Production logs of complex web architectures handling live data transactions.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          <div className="bg-slate-900/10 backdrop-blur-sm border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 p-8 space-y-4">
-            <div className="flex items-center justify-between font-mono">
-              <span className="text-[10px] font-black tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/20 uppercase shadow-[0_0_10px_rgba(52,211,153,0.1)]">Active Core</span>
-              <span className="text-xs text-slate-600">NODE://0842</span>
-            </div>
-            <h3 className="text-2xl font-bold tracking-wide text-slate-100 pt-1 font-mono">AI Behavioral Dashboard</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Synchronous structural telemetry panels parsing user flow patterns, multi-level event logs, and active analytical pipelines with sub-second data streaming.
-            </p>
-          </div>
-          
-          <div className="bg-slate-900/10 backdrop-blur-sm border border-slate-900 rounded-2xl overflow-hidden hover:border-teal-500/30 transition-all duration-300 p-8 space-y-4">
-            <div className="flex items-center justify-between font-mono">
-              <span className="text-[10px] font-black tracking-widest text-teal-400 bg-teal-500/10 px-3 py-1 rounded-md border border-teal-500/20 uppercase shadow-[0_0_10px_rgba(45,212,191,0.1)]">Active Matrix</span>
-              <span className="text-xs text-slate-600">NODE://0911</span>
-            </div>
-            <h3 className="text-2xl font-bold tracking-wide text-slate-100 pt-1 font-mono">Multi-Tenant CRM Gateway</h3>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              High-concurrency infrastructure engineered for micro-commissions monitoring, dynamic host slot routing, server less resource management, and instant billing engines.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Interactive Operational Lead Form */}
-      <section id="consultation" className="py-28 px-6 max-w-xl mx-auto space-y-10 border-t border-slate-900/60 z-10 relative">
-        <div className="text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight font-mono">Initiate Blueprint Protocol</h2>
-          <p className="text-slate-400 text-sm md:text-base">Submit system parameters below. The node will handle data formatting instantly.</p>
+      {/* Deep Space Interactive Hero Section */}
+      <section className="relative pt-32 pb-24 px-6 z-10 max-w-5xl mx-auto text-center space-y-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-[10px] font-bold tracking-widest text-slate-400 uppercase shadow-inner">
+          <Activity className="w-3 h-3 text-emerald-400 animate-spin [animation-duration:8s]" /> 
+          Matrix Environment Operational
         </div>
         
-        <form onSubmit={handleFormSubmit} className="space-y-6 bg-slate-900/10 backdrop-blur-md p-8 rounded-2xl border border-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.3)] focus-within:border-emerald-500/20 transition-all">
+        <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-[1.05] uppercase">
+          Autonomous AI & <br />
+          <span className="bg-gradient-to-r from-emerald-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(52,211,153,0.15)] font-sans">
+            Code Architectures
+          </span>
+        </h1>
+        
+        <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-sans">
+          We assemble industrial autonomous execution pipelines, deep multi-tenant infrastructure frameworks, and integrated cognitive backend nodes engineered for absolute compute scaling.
+        </p>
+
+        <div className="pt-6">
+          <a 
+            href="#consultation" 
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-emerald-500/20 text-slate-950 font-black bg-emerald-400 hover:bg-emerald-300 shadow-[0_0_40px_rgba(52,211,153,0.15)] transition-all duration-300 text-xs tracking-widest uppercase"
+          >
+            Initialize Setup Protocol <Layers className="w-4 h-4 text-slate-950" />
+          </a>
+        </div>
+      </section>
+
+      {/* Cyber Infrastructure Cards Grid */}
+      <section className="py-28 px-6 max-w-6xl mx-auto space-y-16 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-500">SYSTEM_CAPABILITIES</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Core Processing Matrices</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Card 01 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-8 rounded-2xl space-y-6 hover:border-emerald-500/20 shadow-xl transition-all duration-300 relative group overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+            <Cpu className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-all duration-300" />
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-slate-100">Custom Software</h3>
+              <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                High-throughput enterprise CRMs, distributed database logic maps, custom data visualization control grids, and lightweight backends optimized for intensive execution.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 02 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-8 rounded-2xl space-y-6 hover:border-cyan-500/20 shadow-xl transition-all duration-300 relative group overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+            <Network className="w-8 h-8 text-cyan-400 group-hover:scale-110 transition-all duration-300" />
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-slate-100">AI Automation</h3>
+              <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                Self-correcting data loops, high-fidelity agent automation layer arrays, localized microservices mapping, and autonomous intent processing nodes.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 03 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-8 rounded-2xl space-y-6 hover:border-emerald-500/20 shadow-xl transition-all duration-300 relative group overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+            <Layers className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-all duration-300" />
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold uppercase tracking-wide text-slate-100">SaaS Engines</h3>
+              <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                Multi-tenant isolated container orchestration, sub-second billing algorithms, automated usage matrices tracking, and highly scalable pipeline deployment setups.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Active Node Logs (Portfolio) Section */}
+      <section className="py-28 px-6 max-w-6xl mx-auto space-y-16 border-t border-slate-900/60 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-400">OPERATIONAL_REPLICAS</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Active Node Deployments</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Portfolio Card 1 */}
+          <div className="bg-slate-950/60 border border-slate-900 rounded-2xl p-8 space-y-4 hover:border-emerald-500/20 transition-all duration-300 relative group">
+            <div className="flex items-center justify-between border-b border-slate-900 pb-4">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="text-[9px] font-black tracking-widest text-emerald-400 bg-emerald-500/5 px-2.5 py-1 rounded border border-emerald-500/10 uppercase">LIVE_INSTANCE</span>
+              </div>
+              <span className="text-[10px] text-slate-600 font-mono font-bold">ADDR://0842_ALPHA</span>
+            </div>
+            <h4 className="text-xl font-bold tracking-wide text-slate-100">AI Behavioral Predictive Layer</h4>
+            <p className="text-slate-400 text-xs leading-relaxed font-sans">
+              Real-time synchronization platform collecting system activity parameters, displaying behavioral cluster topologies with sub-second stream analytics rendering.
+            </p>
+          </div>
+          
+          {/* Portfolio Card 2 */}
+          <div className="bg-slate-950/60 border border-slate-900 rounded-2xl p-8 space-y-4 hover:border-cyan-500/20 transition-all duration-300 relative group">
+            <div className="flex items-center justify-between border-b border-slate-900 pb-4">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <span className="text-[9px] font-black tracking-widest text-cyan-400 bg-cyan-500/5 px-2.5 py-1 rounded border border-cyan-500/10 uppercase">CORE_MATRIX</span>
+              </div>
+              <span className="text-[10px] text-slate-600 font-mono font-bold">ADDR://0911_OMEGA</span>
+            </div>
+            <h4 className="text-xl font-bold tracking-wide text-slate-100">Multi-Tenant CRM Grid Architecture</h4>
+            <p className="text-slate-400 text-xs leading-relaxed font-sans">
+              Isolated workspace systems running micro-commission calculations, modular dynamic server instances allocations, and real-time ledger generation protocols.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Sci-Fi Blueprint Form Layout */}
+      <section id="consultation" className="py-28 px-6 max-w-xl mx-auto space-y-10 border-t border-slate-900/60 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">CONFIGURATION_INITIALIZER</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Initiate Blueprint</h2>
+        </div>
+        
+        <form onSubmit={handleFormSubmit} className="space-y-6 bg-slate-950/80 border border-slate-900 p-8 rounded-2xl shadow-2xl shadow-black/50 focus-within:border-emerald-500/20 transition-all relative">
+          
           {isSubmitting && (
-            <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 text-xs font-mono p-4 rounded-xl text-center tracking-widest font-bold animate-pulse uppercase">
-              {submitStatus}
+            <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center p-6 space-y-4 border border-emerald-500/20">
+              <Flame className="w-8 h-8 text-emerald-400 animate-bounce" />
+              <div className="text-xs font-bold text-emerald-400 tracking-widest text-center animate-pulse">
+                {submitStatus}
+              </div>
             </div>
           )}
+
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 font-mono">Operator Token Name</label>
-            <input type="text" placeholder="John Doe" className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:shadow-[0_0_15px_rgba(52,211,153,0.05)] transition-all placeholder:text-slate-700 font-medium font-mono" required />
+            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Operator Signature Name</label>
+            <input type="text" placeholder="e.g. MANTU PATRA" className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:bg-slate-900 transition-all placeholder:text-slate-700" required />
           </div>
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 font-mono">Secure Return Route (Email)</label>
-            <input type="email" placeholder="john@company.com" className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:shadow-[0_0_15px_rgba(52,211,153,0.05)] transition-all placeholder:text-slate-700 font-medium font-mono" required />
+            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Secure Routing Link (Email)</label>
+            <input type="email" placeholder="operator@domain.com" className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:bg-slate-900 transition-all placeholder:text-slate-700" required />
           </div>
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 font-mono">Functional Core Specifications</label>
-            <textarea rows={4} placeholder="Detail your exact software blueprints or data bottleneck vectors..." className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:shadow-[0_0_15px_rgba(52,211,153,0.05)] transition-all placeholder:text-slate-700 resize-none font-medium font-mono" required></textarea>
+            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Core Optimization Parameters</label>
+            <textarea rows={4} placeholder="Describe exact automation flowcharts or application requirements needing allocation..." className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40 focus:bg-slate-900 transition-all placeholder:text-slate-700 resize-none font-sans" required></textarea>
           </div>
-          <button type="submit" disabled={isSubmitting} className="w-full relative inline-flex items-center justify-center p-4 px-6 py-3.5 overflow-hidden font-bold text-slate-950 transition duration-300 ease-out rounded-xl shadow-xl group disabled:opacity-50">
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-emerald-400 to-teal-500"></span>
-            <span className="absolute top-0 left-0 w-full h-full transition-all duration-500 ease-out transform translate-x-full bg-gradient-to-r from-teal-400 to-emerald-400 group-hover:translate-x-0"></span>
-            <span className="relative text-sm font-black tracking-wider uppercase font-mono">Inject System Requirements &rarr;</span>
+          
+          <button type="submit" className="w-full border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-slate-950 font-black py-4 rounded-xl transition-all duration-300 text-xs tracking-widest uppercase shadow-[0_0_30px_rgba(16,185,129,0.05)]">
+            Inject Requirements Protocol &rarr;
           </button>
         </form>
         
-        {/* Terminal Infrastructure Footer */}
-        <div className="pt-8 text-center space-y-3 border-t border-slate-900 text-xs text-slate-500 font-mono">
-          <div className="flex justify-center gap-6 text-slate-600">
-            <div>SYS_INSTANCE: LIVE</div>
-            <div>LOCATION: IN // WORLDWIDE</div>
+        {/* Terminal Core Node System Logs Footer */}
+        <div className="pt-8 text-center space-y-3 border-t border-slate-900 text-[10px] text-slate-600 font-mono">
+          <div className="flex justify-center gap-6">
+            <div className="flex items-center gap-1.5"><Shield className="w-3 h-3 text-slate-600" /> INSTANCE_LOGS: SECURE</div>
+            <div>SECTOR: INDIA // GLOBAL</div>
           </div>
-          <div className="text-[10px] tracking-widest text-slate-700 uppercase pt-1">&copy; 2026 VANTRIX AI. HARDWARE SECURED ENGINE.</div>
+          <div className="tracking-widest text-slate-700 text-[9px] uppercase pt-2">&copy; 2026 VANTRIX AI. OPERATIONAL TERMINAL REPLICA MATRIX.</div>
         </div>
       </section>
 
