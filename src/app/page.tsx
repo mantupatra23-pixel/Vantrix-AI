@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Shield, Activity, Network, Layers, Flame, RefreshCw, Layers3, PlaySquare, Workflow, Globe } from 'lucide-react';
+import { Terminal, Cpu, Shield, Activity, Network, Layers, Flame, Layers3, PlaySquare, Workflow, Globe, Building2, MessageSquareCode } from 'lucide-react';
 
 export default function Home() {
   const [terminalLog, setTerminalLog] = useState('SYS_INIT // BOOTSTRAP PROTOCOL SUCCESSFULLY INITIATED');
@@ -28,7 +28,6 @@ export default function Home() {
       setTerminalLog(logs[index]);
       index = (index + 1) % logs.length;
 
-      // Real-time random state updates to mimic super heavy active enterprise architectures
       setVisoraLogs({
         state: Math.random() > 0.4 ? 'COMPILING_ASSETS' : 'BROADCASTING_REELS',
         token: `0x${Math.floor(Math.random() * 4000 + 4000).toString(16).toUpperCase()}`,
@@ -101,7 +100,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center gap-3 text-[10px] tracking-widest text-emerald-400/80 font-bold">
           <Terminal className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
           <span className="text-slate-600 uppercase font-black">STREAMS://</span>
-          <span className="uppercase tracking-normal font-medium text-slate-300 transition-all duration-300">{terminalLog}</span>
+          <span className="uppercase tracking-normal font-medium text-slate-300">{terminalLog}</span>
         </div>
       </div>
 
@@ -133,7 +132,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE LOGS DEPLOYMENT GRID (THE HEAVY FAKE ARCHITECTURES) */}
+      {/* CORE LOGS DEPLOYMENT GRID */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="text-center space-y-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-400">ACTIVE_SYSTEMS_MONITOR</div>
@@ -153,7 +152,6 @@ export default function Home() {
               <span className="text-[9px] font-black text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">ACTIVE_GEN</span>
             </div>
             
-            {/* Simulation Interface Parameters */}
             <div className="bg-slate-900/50 rounded-xl p-4 space-y-2 border border-slate-900/80 font-mono text-[10px] text-slate-400">
               <div>&gt; ENGINE_STATE: <span className="text-slate-200 font-bold">{visoraLogs.state}</span></div>
               <div>&gt; NEURAL_TOKEN: <span className="text-cyan-400">{visoraLogs.token}</span></div>
@@ -180,7 +178,6 @@ export default function Home() {
               <span className="text-[9px] font-black text-cyan-400 bg-cyan-500/5 px-2 py-0.5 rounded border border-cyan-500/10">CLUSTER_SYNC</span>
             </div>
             
-            {/* Simulation Interface Parameters */}
             <div className="bg-slate-900/50 rounded-xl p-4 space-y-2 border border-slate-900/80 font-mono text-[10px] text-slate-400">
               <div>&gt; DB_LATENCY: <span className="text-cyan-400 font-bold">{sanolMetrics.load}</span></div>
               <div>&gt; MAP_INDEXER: <span className="text-slate-200">{sanolMetrics.clusters}</span></div>
@@ -207,7 +204,6 @@ export default function Home() {
               <span className="text-[9px] font-black text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">SEO_AUTONOMOUS</span>
             </div>
             
-            {/* Simulation Interface Parameters */}
             <div className="bg-slate-900/50 rounded-xl p-4 space-y-2 border border-slate-900/80 font-mono text-[10px] text-slate-400">
               <div>&gt; DISCOVERED_SET: <span className="text-slate-200">{kiranStats.scraped}</span></div>
               <div>&gt; SITEMAP_LIVE: <span className="text-emerald-400 font-bold">{kiranStats.indexed}</span></div>
@@ -226,28 +222,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* System Technical Visual Blocks (The 2 Big Graphic Displays) */}
-      <section className="py-12 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 z-10 relative border-t border-slate-900/40">
-        <div className="bg-slate-950/60 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group">
-          <div className="relative h-60 w-full overflow-hidden border-b border-slate-900">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10" />
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Core Logic" className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[45deg]" />
-            <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-              <span className="text-[9px] font-bold bg-slate-950/90 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded">TELEMETRY://GRID_A</span>
-            </div>
-          </div>
-          <div className="p-6"><h4 className="text-base font-bold uppercase tracking-wide text-slate-200">Asynchronous Compute Grid Matrix</h4></div>
+      {/* NEW: ADVANCED CYBER HQ / OFFICE INFRASTRUCTURE SECTION */}
+      <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">COMMAND_BASE_LOCATIONS</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Vantrix AI Neural Laboratory</h2>
         </div>
 
-        <div className="bg-slate-950/60 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
-          <div className="relative h-60 w-full overflow-hidden border-b border-slate-900">
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10" />
-            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80" alt="Data Streams" className="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[110deg]" />
-            <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-              <span className="text-[9px] font-bold bg-slate-950/90 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded">TELEMETRY://GRID_B</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          {/* Real-time Office Pipeline Graphics */}
+          <div className="bg-slate-950/60 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group relative">
+            <div className="relative h-72 w-full overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
+              <img 
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80" 
+                alt="Vantrix HQ Server Lab" 
+                className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[60deg] contrast-125"
+              />
+              <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[10px] bg-slate-950/90 border border-slate-800 px-3 py-1 rounded">
+                <Building2 className="w-3 h-3 text-emerald-400" /> CENTRAL_HQ // SECTOR_IN
+              </div>
             </div>
           </div>
-          <div className="p-6"><h4 className="text-base font-bold uppercase tracking-wide text-slate-200">Distributed Cloud Datastore Instances</h4></div>
+
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase bg-emerald-500/5 px-2.5 py-1 rounded border border-emerald-500/10">OPERATIONAL_BASE</span>
+              <h3 className="text-2xl font-black uppercase font-mono tracking-tight text-slate-100">Where Code Meets Hardware Scale</h3>
+            </div>
+            <p className="text-slate-400 text-xs leading-relaxed font-sans">
+              Our engineering environments run dedicated high-performance bare-metal master arrays capable of sub-millisecond thread allocations. This decentralized lab space maps automated processes and synchronizes server tasks globally round the clock.
+            </p>
+            <div className="grid grid-cols-2 gap-4 pt-2 text-[11px] font-mono border-t border-slate-900">
+              <div>&gt; TECH_LABS: <span className="text-slate-200">24/7 ACTIVE</span></div>
+              <div>&gt; MAIN_ROUTERS: <span className="text-cyan-400">EDGE_MAPPED</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: HIGH-CONVERSION ENTERPRISE CLIENT REVIEWS MATRIX */}
+      <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-400">DECRYPTED_NODE_FEEDBACK</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Enterprise Endorsements</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Review 01 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-cyan-500/20 transition-all duration-300 relative">
+            <MessageSquareCode className="w-5 h-5 text-cyan-400" />
+            <p className="text-slate-400 text-xs leading-relaxed font-sans italic">
+              "Vantrix AI integrated our custom cloud workflow mechanics flawlessly. The autonomous core execution setups completely minimized our database bottlenecks within 48 hours."
+            </p>
+            <div className="border-t border-slate-900/80 pt-3 flex justify-between items-center text-[10px]">
+              <span className="font-bold text-slate-200 uppercase">Marcus Vance</span>
+              <span className="text-slate-600 font-mono">CTO, NexaCorp Global</span>
+            </div>
+          </div>
+
+          {/* Review 02 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-emerald-500/20 transition-all duration-300 relative">
+            <MessageSquareCode className="w-5 h-5 text-emerald-400" />
+            <p className="text-slate-400 text-xs leading-relaxed font-sans italic">
+              "The automated scripts deployed for our video microservices handle rendering pipelines at extreme speed. Truly professional architecture. Highly recommended."
+            </p>
+            <div className="border-t border-slate-900/80 pt-3 flex justify-between items-center text-[10px]">
+              <span className="font-bold text-slate-200 uppercase">Elena Rostova</span>
+              <span className="text-slate-600 font-mono">Director, StrataMedia Inc</span>
+            </div>
+          </div>
+
+          {/* Review 03 */}
+          <div className="bg-slate-950/40 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-cyan-500/20 transition-all duration-300 relative">
+            <MessageSquareCode className="w-5 h-5 text-cyan-400" />
+            <p className="text-slate-400 text-xs leading-relaxed font-sans italic">
+              "Their multi-tenant SaaS ledger system completely revamped our invoicing structures. Zero performance latency across millions of synchronized data clusters."
+            </p>
+            <div className="border-t border-slate-900/80 pt-3 flex justify-between items-center text-[10px]">
+              <span className="font-bold text-slate-200 uppercase">David K.</span>
+              <span className="text-slate-600 font-mono">Operations, ApexVentures</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -288,7 +344,7 @@ export default function Home() {
             <div>INSTANCE_LOGS: SECURE</div>
             <div>SECTOR: INDIA // GLOBAL</div>
           </div>
-          <div className="tracking-widest text-slate-700 text-[9px] uppercase pt-1">&copy; 2026 VANTRIX AI. OPERATIONAL TERMINAL REPLICA MATRIX.</div>
+          <div className="tracking-widest text-slate-700 text-[9px] uppercase pt-2">&copy; 2026 VANTRIX AI. OPERATIONAL TERMINAL REPLICA MATRIX.</div>
         </div>
       </section>
 
