@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Shield, Activity, Network, Layers, Flame, Layers3, PlaySquare, Workflow, Globe, MessageSquareCode, Radio, Command, ShieldAlert, Sliders, Download, Building2 } from 'lucide-react';
+import { Terminal, Cpu, Shield, Activity, Network, Layers, Flame, Layers3, PlaySquare, Workflow, Globe, MessageSquareCode, Radio, Command, ShieldAlert, Sliders, Download, Building2, Smartphone, Video, RefreshCw } from 'lucide-react';
 
 export default function Home() {
   const [terminalLog, setTerminalLog] = useState('SYS_INIT // BOOTSTRAP PROTOCOL SUCCESSFULLY INITIATED');
@@ -10,18 +10,15 @@ export default function Home() {
   const [aiResponseText, setAiResponseText] = useState('WAITING FOR INTENT LINK...');
   const [activeTab, setActiveTab] = useState('json');
   
-  // Custom states for interactive modules
   const [hasWelcomed, setHasWelcomed] = useState(false);
   const [welcomeAlert, setWelcomeAlert] = useState(false);
   const [computeNodes, setComputeNodes] = useState(82);
   const [securityLogs, setSecurityLogs] = useState<string[]>([]);
   const [isDownloading, setIsDownloading] = useState(false);
 
-  // High-fidelity simulation parameter arrays
   const [visoraLogs, setVisoraLogs] = useState({ state: 'RENDERING_STREAMS', token: '0xVF82', fps: '60 FPS' });
   const [sanolMetrics, setSanolMetrics] = useState({ load: '0.42ms', clusters: '82/84 Active' });
 
-  // Play electronic frequency sound and voice synthesis on user touch
   const triggerVoiceWelcome = () => {
     try {
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -121,17 +118,14 @@ export default function Home() {
       className="min-h-screen bg-[#020617] text-slate-100 font-mono selection:bg-emerald-500 selection:text-slate-950 scroll-smooth relative overflow-hidden"
     >
       
-      {/* Structural Tech Grid Layer */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none opacity-40" />
       
-      {/* Voice Greet Overlay Notification */}
       {welcomeAlert && (
         <div className="fixed top-24 right-6 bg-emerald-950/90 border border-emerald-400 p-4 rounded-xl z-50 text-xs text-emerald-400 font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-bounce uppercase tracking-widest">
           &gt; SECURITY_ACCESS: OPERATOR SESSION LINKED SUCCESSFULLY
         </div>
       )}
 
-      {/* Corporate Glassmorphic Header */}
       <header className="border-b border-emerald-500/10 sticky top-0 bg-[#020617]/80 backdrop-blur-xl z-50 shadow-2xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -148,7 +142,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Real-time Ticker Log Matrix Banner */}
       <div className="w-full bg-emerald-950/10 border-b border-emerald-500/5 py-3 px-6 z-10 relative backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center gap-3 text-[10px] tracking-widest text-emerald-400/80 font-bold">
           <Terminal className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
@@ -178,7 +171,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ACTIVE COMPUTATIONAL TARGET LOG BLOCKS */}
+      {/* EXPLICIT CAPABILITIES ZONE: WHAT WE BUILD SECTION */}
+      <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
+        <div className="text-center space-y-2">
+          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-cyan-400">CORE_PRODUCTION_MATRIX</div>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">What We Build</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Capability 1 */}
+          <div className="bg-slate-950 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-emerald-500/20 transition-all">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <Video className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-bold uppercase tracking-wide text-slate-200">High-Scale Webinar Platforms</h3>
+            <p className="text-slate-400 text-xs font-sans leading-relaxed">
+              Real-time multi-tenant stream broadcasting engines with dynamic interactive chat architectures and ultra-low latency relay layers.
+            </p>
+          </div>
+
+          {/* Capability 2 */}
+          <div className="bg-slate-950 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-cyan-500/20 transition-all">
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-bold uppercase tracking-wide text-slate-200">Next-Gen Mobile & SaaS Apps</h3>
+            <p className="text-slate-400 text-xs font-sans leading-relaxed">
+              Premium custom responsive applications engineered for iOS and Android, deploying high-end data interfaces securely.
+            </p>
+          </div>
+
+          {/* Capability 3 */}
+          <div className="bg-slate-950 border border-slate-900 p-6 rounded-2xl space-y-4 hover:border-emerald-500/20 transition-all">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <RefreshCw className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-bold uppercase tracking-wide text-slate-200">100% Workflow Automation</h3>
+            <p className="text-slate-400 text-xs font-sans leading-relaxed">
+              Automated webhook arrays, database sync loops, payment ledgers, and intelligent custom bots executing complex workloads automatically.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPUTATIONAL TARGET DIAGNOSTIC BLOCKS */}
       <section className="py-12 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 z-10 relative border-t border-slate-900/60">
         <div className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between border-b border-slate-900 pb-2">
@@ -220,7 +256,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BUDGET CONFIGURATION & LIVE SECURITY MONITOR GRID */}
+      {/* COMPUTATIONAL SLIDERS & SECURITY PANELS */}
       <section className="py-20 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-900/60 z-10 relative">
         <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-6 shadow-2xl">
           <div className="flex items-center gap-2 border-b border-slate-900 pb-3">
@@ -268,25 +304,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EXTENDED: DAFU INTERACTIVE OFFICE NEURAL HQ LABORATORIES SECTION */}
+      {/* OFFICE NEURAL LABS SECTION */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="text-center space-y-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">COMMAND_BASE_LOCATIONS</div>
           <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Vantrix AI Neural Laboratory HQ</h2>
         </div>
 
-        {/* 4 Block Multi-Angle Office Array Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Angle 1: Central Operations Command Office */}
           <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group">
             <div className="relative h-64 w-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
-                alt="Central Command Base" 
-                className="w-full h-full object-cover opacity-35 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[60deg] contrast-125"
-              />
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Central Command Base" className="w-full h-full object-cover opacity-35 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[60deg] contrast-125" />
               <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
                 <Building2 className="w-3 h-3 text-emerald-400" /> BASE_01 // OPERATIONS_ROOM
               </div>
@@ -296,60 +325,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Angle 2: Quantum Storage Grid Vault */}
           <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
             <div className="relative h-64 w-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" 
-                alt="Quantum Server Vault" 
-                className="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[140deg] saturate-150"
-              />
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Quantum Server Vault" className="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[140deg] saturate-150" />
               <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
                 <Cpu className="w-3 h-3 text-cyan-400" /> VAULT_04 // BARE_METAL_GRID
               </div>
             </div>
             <div className="p-5 border-t border-slate-900/40 bg-slate-950/50">
-              <div className="text-xs font-bold text-slate-200 font-mono uppercase tracking-wide">Dynamic Storage Cluster Clusters</div>
+              <div className="text-xs font-bold text-slate-200 font-mono uppercase tracking-wide">Dynamic Storage Clusters</div>
             </div>
           </div>
-
-          {/* Angle 3: Developer Core Workstations Layout */}
-          <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
-            <div className="relative h-64 w-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img 
-                src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=800&q=80" 
-                alt="Core Architecture Workspace" 
-                className="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[90deg] contrast-110"
-              />
-              <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
-                <Network className="w-3 h-3 text-cyan-400" /> STATION_09 // COGNITIVE_DEV
-              </div>
-            </div>
-            <div className="p-5 border-t border-slate-900/40 bg-slate-950/50">
-              <div className="text-xs font-bold text-slate-200 font-mono uppercase tracking-wide">Multi-Tenant Thread Allocation Zones</div>
-            </div>
-          </div>
-
-          {/* Angle 4: Distributed Network Interface Datastores */}
-          <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group">
-            <div className="relative h-64 w-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img 
-                src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80" 
-                alt="Distributed Data Clusters" 
-                className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-700 filter hue-rotate-[110deg]"
-              />
-              <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
-                <Layers className="w-3 h-3 text-emerald-400" /> TELEMETRY // REGISTRY_B
-              </div>
-            </div>
-            <div className="p-5 border-t border-slate-900/40 bg-slate-950/50">
-              <div className="text-xs font-bold text-slate-200 font-mono uppercase tracking-wide">Global Endpoint Routing Framework</div>
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -358,10 +345,7 @@ export default function Home() {
         <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-4">
           <div className="flex gap-2 border-b border-slate-900 pb-3 overflow-x-auto">
             {['json', 'logs', 'ping'].map((t) => (
-              <button 
-                key={t} onClick={() => processAiDiagnosis(t)}
-                className={`px-4 py-1.5 text-xs font-bold rounded-xl border uppercase tracking-wider transition-all ${activeTab === t ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400' : 'border-slate-900 text-slate-500'}`}
-              >
+              <button key={t} onClick={() => processAiDiagnosis(t)} className={`px-4 py-1.5 text-xs font-bold rounded-xl border uppercase tracking-wider transition-all ${activeTab === t ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400' : 'border-slate-900 text-slate-500'}`}>
                 {t === 'json' ? 'Get_JSON_Map' : t === 'logs' ? 'Stream_Logs' : 'Ping_Gateway'}
               </button>
             ))}
@@ -373,20 +357,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CLIENT REVIEWS */}
-      <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {['Marcus Vance // CTO, NexaCorp', 'Elena Rostova // Director, StrataMedia', 'David K. // Operations, ApexVentures'].map((name, i) => (
-            <div key={i} className="bg-slate-950/40 border border-slate-900 p-6 rounded-2xl space-y-3">
-              <MessageSquareCode className="w-4 h-4 text-cyan-400" />
-              <p className="text-slate-400 text-xs italic font-sans">"Vantrix AI solutions integrated our custom data infrastructure requirements flawlessly with absolute zero lag."</p>
-              <div className="border-t border-slate-900/60 pt-2 text-[9px] uppercase tracking-wider text-slate-400 font-bold">{name}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* FORM AND DOWNLOADER */}
+      {/* LEAD CONVERSION FORM */}
       <section id="consultation" className="py-24 px-6 max-w-xl mx-auto space-y-8 border-t border-slate-900/60 z-10 relative">
         <div className="text-center space-y-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">CONFIGURATION_INITIALIZER</div>
@@ -398,10 +369,7 @@ export default function Home() {
             <div className="text-[10px] font-black text-slate-200 uppercase tracking-wider">VANTRIX_INFRASTRUCTURE_DOCS.PDF</div>
             <div className="text-[9px] text-slate-500 uppercase font-mono">Size: 4.8 MB // Security Verified</div>
           </div>
-          <button 
-            type="button" onClick={handleDownloadProtocol} disabled={isDownloading}
-            className="border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 p-2.5 rounded-xl transition-all font-bold text-xs uppercase flex items-center gap-2 disabled:opacity-50"
-          >
+          <button type="button" onClick={handleDownloadProtocol} disabled={isDownloading} className="border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 p-2.5 rounded-xl transition-all font-bold text-xs uppercase flex items-center gap-2 disabled:opacity-50">
             <Download className="w-3.5 h-3.5" /> {isDownloading ? 'FETCHING...' : 'DOWNLOAD'}
           </button>
         </div>
