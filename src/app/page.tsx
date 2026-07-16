@@ -95,11 +95,24 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [computeNodes]);
 
-  const processAiDiagnosis = (mode: string) => {
+  const processAiDiagnosis = async (mode: string) => {
     setActiveTab(mode);
-    if (mode === 'json') setAiResponseText('FETCHING: {"status": 200, "node": "CLUSTER_A", "latency": "0.12ms", "integrity": "VERIFIED"}');
-    if (mode === 'logs') setAiResponseText('LOG: INGESTION COMPLETE // RE-ROUTING PIPELINE TO PRIMARY MATRIX.');
-    if (mode === 'ping') setAiResponseText('PING: 8.8.8.8 -> 4ms // CORE_GATEWAY: ONLINE // STABLE_MAPPED');
+    setAiResponseText(`QUERYING MAINFRAME FOR METRIC: ${mode.toUpperCase()}...`);
+    try {
+      const response = await fetch('https://vantrix-ai-backen.onrender.com/');
+      if (response.ok) {
+        const data = await response.json();
+        if (mode === 'json') setAiResponseText(`FETCHED NODES: ${JSON.stringify(data.analytics_metrics)}`);
+        if (mode === 'logs') setAiResponseText(`CORE LOGS: Version ${data.version} // Status: ${data.status}`);
+        if (mode === 'ping') setAiResponseText(`GATEWAY PING: Resolved at ${data.analytics_metrics.execution_avg_latency}`);
+      } else {
+        throw new Error();
+      }
+    } catch (e) {
+      if (mode === 'json') setAiResponseText('FETCHING: {"status": 200, "node": "CLUSTER_A", "latency": "0.12ms", "integrity": "VERIFIED"}');
+      if (mode === 'logs') setAiResponseText('LOG: INGESTION COMPLETE // RE-ROUTING PIPELINE TO PRIMARY MATRIX.');
+      if (mode === 'ping') setAiResponseText('PING: 8.8.8.8 -> 4ms // CORE_GATEWAY: ONLINE // STABLE_MAPPED');
+    }
   };
 
   const handleDownloadProtocol = () => {
@@ -110,14 +123,12 @@ export default function Home() {
     }, 2000);
   };
 
-  // LINKED TO YOUR LIVE BACKEND RENDER ENDPOINT
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('ENCRYPTING INJECTION SCHEMATICS...');
     
     try {
-      // Pinging the deployed FastAPI endpoint
       const response = await fetch('https://vantrix-ai-backen.onrender.com/api/v1/automation/handshake', {
         method: 'POST',
         headers: {
@@ -131,26 +142,23 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error('SYS_NET_ERROR: Mainframe verification timeout');
+        throw new Error('SYS_NET_ERROR');
       }
 
       const data = await response.json();
+      setAiResponseText(`BACKEND RESPONSE [${data.status}]: Ingestion Analytics Latency: ${data.latency_metrics}`);
       
       setSubmitStatus('ESTABLISHING P2P ENCRYPTED HANDSHAKE...');
       setTimeout(() => {
         setSubmitStatus('HANDSHAKE SECURED. REDIRECTING ENGINES...');
         setTimeout(() => {
-          // Triggering the automated backend WhatsApp payload url
           window.location.href = data.redirect_url;
           setIsSubmitting(false);
         }, 800);
       }, 800);
 
     } catch (error) {
-      console.error(error);
       setSubmitStatus('BYPASSING NETWORK LOCK... DIRECT ROUTE ON');
-      
-      // Fallback route if backend spins down or takes time due to free tier sleep
       setTimeout(() => {
         const baseMessage = `[VANTRIX_OS // BYPASS_CONNECT]\n\nOperator Name: ${operatorName}\nRouting Link: ${routingLink}\nParameters: ${optimizationParams}`;
         window.location.href = `https://wa.me/917377811705?text=${encodeURIComponent(baseMessage)}`;
@@ -164,30 +172,24 @@ export default function Home() {
       onClick={triggerVoiceWelcome}
       className="min-h-screen bg-[#020617] text-slate-100 font-mono selection:bg-emerald-500 selection:text-slate-950 scroll-smooth relative overflow-hidden"
     >
-      
-      {/* Structural Tech Grid Layer */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none opacity-40" />
       
-      {/* Voice Welcome Notification Overlay */}
       {welcomeAlert && (
         <div className="fixed top-24 right-6 bg-emerald-950/90 border border-emerald-400 p-4 rounded-xl z-50 text-xs text-emerald-400 font-bold shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-bounce uppercase tracking-widest">
           &gt; SECURITY_ACCESS: OPERATOR SESSION LINKED SUCCESSFULLY
         </div>
       )}
 
-      {/* SCI-FI CUSTOM DYNAMIC MODAL */}
       {showBlueprintModal && (
         <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="bg-[#020617] border border-slate-800 rounded-2xl w-full max-w-md p-6 relative space-y-4 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
             <button onClick={() => setShowBlueprintModal(false)} className="absolute top-4 right-4 text-slate-500 hover:text-slate-300">
               <X className="w-4 h-4" />
             </button>
-            
             <div className="flex items-center gap-2 border-b border-slate-900 pb-3 text-cyan-400">
               <TerminalSquare className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-wider">Vantrix Core Decryption</span>
             </div>
-
             {modalStage === 'decrypting' ? (
               <div className="py-6 flex flex-col items-center justify-center space-y-3">
                 <div className="w-6 h-6 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
@@ -216,7 +218,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Corporate Header */}
       <header className="border-b border-emerald-500/10 sticky top-0 bg-[#020617]/80 backdrop-blur-xl z-50 shadow-2xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -233,7 +234,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Stream ticker */}
       <div className="w-full bg-emerald-950/10 border-b border-emerald-500/5 py-3 px-6 z-10 relative backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex items-center gap-3 text-[10px] tracking-widest text-emerald-400/80 font-bold">
           <Terminal className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
@@ -242,7 +242,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Section */}
       <section className="relative pt-28 pb-20 px-6 z-10 max-w-5xl mx-auto text-center space-y-8">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-[10px] font-bold tracking-widest text-slate-400 uppercase">
           <Radio className="w-3 h-3 text-emerald-400 animate-pulse" /> AI Processing Matrix Online
@@ -263,7 +262,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE CAPABILITIES */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-slate-950 border border-slate-900 p-6 rounded-2xl space-y-4">
@@ -281,7 +279,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPUTATIONAL LOG GRID */}
       <section className="py-12 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 z-10 relative border-t border-slate-900/60">
         <div className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-4">
           <span className="text-xs font-bold text-slate-200 border-b border-slate-900 pb-1 block">VISORA_ENGINE</span>
@@ -291,7 +288,6 @@ export default function Home() {
             <div>&gt; COMPUTATION: <span className="text-slate-200">{visoraLogs.fps}</span></div>
           </div>
         </div>
-
         <div className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-4">
           <span className="text-xs font-bold text-slate-200 border-b border-slate-900 pb-1 block">SANOL_MATRIX</span>
           <div className="bg-slate-900/50 rounded-lg p-3 text-[10px] text-slate-400 space-y-1">
@@ -300,7 +296,6 @@ export default function Home() {
             <div>&gt; INTEGRATION: <span className="text-emerald-400">Razorpay_Secure</span></div>
           </div>
         </div>
-
         <div className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-4">
           <span className="text-xs font-bold text-slate-200 border-b border-slate-900 pb-1 block">KIRAN_NEURAL</span>
           <div className="bg-slate-900/50 rounded-lg p-3 text-[10px] text-slate-400 space-y-1">
@@ -311,7 +306,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SLIDERS & PANELS */}
       <section className="py-20 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-900/60 z-10 relative">
         <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-6 shadow-2xl">
           <div className="flex items-center gap-2 border-b border-slate-900 pb-3">
@@ -336,7 +330,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-4 shadow-2xl relative overflow-hidden">
           <div className="flex items-center justify-between border-b border-slate-900 pb-3">
             <div className="flex items-center gap-2 text-rose-400">
@@ -355,13 +348,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HEADQUARTERS GRID */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="text-center space-y-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">COMMAND_BASE_LOCATIONS</div>
           <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Vantrix AI Neural Laboratory HQ</h2>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group">
             <div className="relative h-64 w-full overflow-hidden">
@@ -373,7 +364,6 @@ export default function Home() {
             </div>
             <div className="p-4 bg-slate-950 text-xs font-bold text-slate-300 uppercase">Main Server Orchestration Labs</div>
           </div>
-
           <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
             <div className="relative h-64 w-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
@@ -387,7 +377,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DIAGNOSIS INTERACT BUTTONS */}
+      {/* DYNAMIC INTERACT TEST LAYER AREA WITH BACKEND ROUTE */}
       <section className="py-12 px-6 max-w-4xl mx-auto space-y-6 z-10 relative">
         <div className="flex gap-2 justify-center">
           {['json', 'logs', 'ping'].map((tab) => (
@@ -404,18 +394,16 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <div className="bg-slate-950 border border-slate-900 p-4 rounded-xl text-center text-xs tracking-wide text-slate-400 min-h-[50px] flex items-center justify-center">
+        <div className="bg-slate-950 border border-slate-900 p-4 rounded-xl text-center text-xs tracking-wide text-slate-400 min-h-[50px] flex items-center justify-center break-all font-mono">
           {aiResponseText}
         </div>
       </section>
 
-      {/* DYNAMIC FORM WITH BACKEND HANDSHAKE */}
       <section id="consultation" className="py-20 px-6 max-w-3xl mx-auto space-y-10 z-10 relative border-t border-slate-900/60">
         <div className="text-center space-y-2">
           <div className="text-[10px] font-bold text-cyan-400 tracking-[0.4em] uppercase">Configuration_Initializer</div>
           <h2 className="text-3xl font-black uppercase">Initiate Blueprint</h2>
         </div>
-
         <div className="bg-slate-950 border border-slate-900 p-3 rounded-2xl flex items-center justify-between max-w-md mx-auto">
           <span className="text-[10px] tracking-wider text-slate-400 uppercase pl-3">Vantrix_Infrastructure_Docs.pdf</span>
           <button 
@@ -425,7 +413,6 @@ export default function Home() {
             <Download className="w-3.5 h-3.5 text-cyan-400" /> Download
           </button>
         </div>
-
         <form onSubmit={handleFormSubmit} className="bg-slate-950/60 border border-slate-900 p-8 rounded-3xl space-y-6 shadow-2xl backdrop-blur-md">
           <div className="space-y-2">
             <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Operator Signature Name</label>
@@ -435,7 +422,6 @@ export default function Home() {
               className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all font-mono"
             />
           </div>
-
           <div className="space-y-2">
             <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Secure Routing Link (Email)</label>
             <input 
@@ -444,7 +430,6 @@ export default function Home() {
               className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all font-mono"
             />
           </div>
-
           <div className="space-y-2">
             <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Core Optimization Parameters</label>
             <textarea 
@@ -453,7 +438,6 @@ export default function Home() {
               className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all resize-none font-mono"
             />
           </div>
-
           <button 
             type="submit" disabled={isSubmitting}
             className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(16,185,129,0.2)] disabled:opacity-50"
@@ -463,12 +447,10 @@ export default function Home() {
         </form>
       </section>
 
-      {/* Footer structural baseline */}
       <footer className="py-12 border-t border-slate-900 text-center text-[9px] text-slate-600 tracking-widest uppercase relative z-10 bg-[#020617]">
         <div>Instance_Logs: Secure // Sector: India // Global</div>
         <div className="mt-2 text-slate-700 font-sans tracking-normal font-medium">© 2026 Vantrix AI. Operational Terminal Replica Matrix.</div>
       </footer>
-
     </div>
   );
 }
