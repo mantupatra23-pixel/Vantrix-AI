@@ -10,6 +10,11 @@ export default function Home() {
   const [aiResponseText, setAiResponseText] = useState('WAITING FOR INTENT LINK...');
   const [activeTab, setActiveTab] = useState('json');
   
+  // Form input matrix states
+  const [operatorName, setOperatorName] = useState('');
+  const [routingLink, setRoutingLink] = useState('');
+  const [optimizationParams, setOptimizationParams] = useState('');
+  
   // Custom states for premium features
   const [hasWelcomed, setHasWelcomed] = useState(false);
   const [welcomeAlert, setWelcomeAlert] = useState(false);
@@ -97,7 +102,6 @@ export default function Home() {
     if (mode === 'ping') setAiResponseText('PING: 8.8.8.8 -> 4ms // CORE_GATEWAY: ONLINE // STABLE_MAPPED');
   };
 
-  // Upgraded custom modular action popup trigger instead of raw simple alert
   const handleDownloadProtocol = () => {
     setShowBlueprintModal(true);
     setModalStage('decrypting');
@@ -110,11 +114,19 @@ export default function Home() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('ENCRYPTING INJECTION SCHEMATICS...');
+    
     setTimeout(() => {
       setSubmitStatus('ESTABLISHING P2P ENCRYPTED HANDSHAKE...');
+      
       setTimeout(() => {
         setSubmitStatus('HANDSHAKE SECURED. REDIRECTING ENGINES...');
-        window.location.href = "https://wa.me/919178065739?text=SYS_HANDSHAKE%3A%20AI%20Console%20Blueprint%20Validated.%20Initialize%20Sequence.";
+        
+        // WhatsApp redirection payload construct matching the new number
+        const baseMessage = `[VANTRIX_OS // INCOMING_CONNECT]\n\nOperator Name: ${operatorName || 'Not Specified'}\nRouting Link: ${routingLink || 'Not Specified'}\nParameters: ${optimizationParams || 'None Specified'}\n\nInitialize sequence execution blueprint.`;
+        const encodedText = encodeURIComponent(baseMessage);
+        
+        // Target endpoint configuration updated successfully
+        window.location.href = `https://wa.me/917377811705?text=${encodedText}`;
       }, 1000);
     }, 1000);
   };
@@ -135,7 +147,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* NEW: SCI-FI CUSTOM DYNAMIC MODAL (Fixes boring native browser alert box) */}
+      {/* NEW: SCI-FI CUSTOM DYNAMIC MODAL */}
       {showBlueprintModal && (
         <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="bg-[#020617] border border-slate-800 rounded-2xl w-full max-w-md p-6 relative space-y-4 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
@@ -223,7 +235,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE CAPABILITIES WHAT WE BUILD */}
+      {/* CORE CAPABILITIES */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-slate-950 border border-slate-900 p-6 rounded-2xl space-y-4">
@@ -271,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SLIDERS & FIREWALL SECURITY PANELS */}
+      {/* SLIDERS & PANELS */}
       <section className="py-20 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-900/60 z-10 relative">
         <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-6 shadow-2xl">
           <div className="flex items-center gap-2 border-b border-slate-900 pb-3">
@@ -315,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEURAL OFFICE HEADQUARTERS GRID (FIXED BLANK IMAGES BUG) */}
+      {/* HEADQUARTERS GRID */}
       <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
         <div className="text-center space-y-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">COMMAND_BASE_LOCATIONS</div>
@@ -337,122 +349,97 @@ export default function Home() {
           <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
             <div className="relative h-64 w-full overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="VAULT_04" className="w-full h-full object-cover opacity-30 filter hue-rotate-[140deg] group-hover:scale-105 transition-all duration-500" />
+              <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80" alt="BASE_02" className="w-full h-full object-cover opacity-35 filter hue-rotate-[180deg] contrast-125 group-hover:scale-105 transition-all duration-500" />
               <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
-                <Cpu className="w-3 h-3 text-cyan-400" /> VAULT_04 // BARE_METAL_GRID
+                <Building2 className="w-3 h-3 text-cyan-400" /> BASE_02 // STATIONS
               </div>
             </div>
-            <div className="p-4 bg-slate-950 text-xs font-bold text-slate-300 uppercase">Dynamic Storage Clusters</div>
-          </div>
-
-          <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-cyan-500/20 transition-all duration-300 group">
-            <div className="relative h-64 w-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              {/* FIXED: Replaced non-loading placeholder with secure functional corporate setup stock */}
-              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="STATION_09" className="w-full h-full object-cover opacity-35 filter hue-rotate-[90deg] group-hover:scale-105 transition-all duration-500" />
-              <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
-                <Network className="w-3 h-3 text-cyan-400" /> STATION_09 // COGNITIVE_DEV
-              </div>
-            </div>
-            <div className="p-4 bg-slate-950 text-xs font-bold text-slate-300 uppercase">Multi-Tenant Thread Allocation Zones</div>
-          </div>
-
-          <div className="bg-slate-950 border border-slate-900 rounded-2xl overflow-hidden hover:border-emerald-500/20 transition-all duration-300 group">
-            <div className="relative h-64 w-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10" />
-              <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=80" alt="TELEMETRY" className="w-full h-full object-cover opacity-40 filter hue-rotate-[110deg] group-hover:scale-105 transition-all duration-500" />
-              <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2 font-mono text-[9px] bg-slate-950/90 border border-slate-800 px-2.5 py-1 rounded">
-                <Layers className="w-3 h-3 text-emerald-400" /> TELEMETRY // REGISTRY_B
-              </div>
-            </div>
-            <div className="p-4 bg-slate-950 text-xs font-bold text-slate-300 uppercase">Global Endpoint Routing Framework</div>
+            <div className="p-4 bg-slate-950 text-xs font-bold text-slate-300 uppercase">Cognitive Deep-Tech Core Systems</div>
           </div>
         </div>
       </section>
 
-      {/* LIVE DIAGNOSIS ROUTER */}
-      <section className="py-12 px-6 max-w-4xl mx-auto space-y-6 z-10 relative border-t border-slate-900/40">
-        <div className="bg-slate-950 border border-slate-900 rounded-2xl p-6 space-y-4">
-          <div className="flex gap-2 border-b border-slate-900 pb-3 overflow-x-auto">
-            {['json', 'logs', 'ping'].map((t) => (
-              <button key={t} onClick={() => processAiDiagnosis(t)} className={`px-4 py-1.5 text-xs font-bold rounded-xl border uppercase tracking-wider transition-all ${activeTab === t ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400' : 'border-slate-900 text-slate-500'}`}>
-                {t === 'json' ? 'Get_JSON_Map' : t === 'logs' ? 'Stream_Logs' : 'Ping_Gateway'}
-              </button>
-            ))}
-          </div>
-          <div className="bg-slate-900/60 border border-slate-900 p-4 rounded-xl text-xs text-slate-300 min-h-[60px] flex items-center gap-3">
-            <Command className="w-4 h-4 text-emerald-400" />
-            <div className="uppercase tracking-wide">{aiResponseText}</div>
-          </div>
-        </div>
-      </section>
-
-      {/* CLIENT REVIEWS */}
-      <section className="py-20 px-6 max-w-6xl mx-auto space-y-12 border-t border-slate-900/60 z-10 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {['Marcus Vance // NexaCorp', 'Elena Rostova // StrataMedia', 'David K. // ApexVentures'].map((name, i) => (
-            <div key={i} className="bg-slate-950/40 border border-slate-900 p-6 rounded-2xl space-y-2">
-              <MessageSquareCode className="w-4 h-4 text-cyan-400" />
-              <p className="text-slate-400 text-xs italic font-sans">"Vantrix AI integrated our enterprise automation pipelines flawlessly with extreme zero latency."</p>
-              <div className="border-t border-slate-900/60 pt-2 text-[9px] uppercase tracking-wider text-slate-500 font-bold">{name}</div>
-            </div>
+      {/* DYNAMIC INTERACT TEST LAYER AREA */}
+      <section className="py-12 px-6 max-w-4xl mx-auto space-y-6 z-10 relative">
+        <div className="flex gap-2 justify-center">
+          {['json', 'logs', 'ping'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => processAiDiagnosis(tab)}
+              className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest border transition-all ${
+                activeTab === tab 
+                  ? 'bg-cyan-500/10 border-cyan-400 text-cyan-400' 
+                  : 'bg-slate-950 border-slate-900 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Get_{tab}_Map
+            </button>
           ))}
         </div>
+        <div className="bg-slate-950 border border-slate-900 p-4 rounded-xl text-center text-xs tracking-wide text-slate-400 min-h-[50px] flex items-center justify-center">
+          {aiResponseText}
+        </div>
       </section>
 
-      {/* LEAD CONVERSION & PROTOCOL INJECTOR FORM */}
-      <section id="consultation" className="py-24 px-6 max-w-xl mx-auto space-y-8 border-t border-slate-900/60 z-10 relative">
+      {/* DYNAMIC FORM CUSTOMIZER INJECTION INPUT LAYER */}
+      <section id="consultation" className="py-20 px-6 max-w-3xl mx-auto space-y-10 z-10 relative border-t border-slate-900/60">
         <div className="text-center space-y-2">
-          <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-emerald-400">CONFIGURATION_INITIALIZER</div>
-          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Initiate Blueprint</h2>
+          <div className="text-[10px] font-bold text-cyan-400 tracking-[0.4em] uppercase">Configuration_Initializer</div>
+          <h2 className="text-3xl font-black uppercase">Initiate Blueprint</h2>
         </div>
 
-        {/* RE-ENGINEERED BLUEPRINT DOWNLOAD WITH PREMIUM CUSTOM MODAL OPENER */}
-        <div className="bg-slate-950 border border-slate-900 p-4 rounded-2xl flex items-center justify-between shadow-xl">
-          <div className="space-y-0.5">
-            <div className="text-[10px] font-black text-slate-200 uppercase tracking-wider">VANTRIX_INFRASTRUCTURE_DOCS.PDF</div>
-            <div className="text-[9px] text-slate-500 uppercase font-mono">Size: 4.8 MB // Security Verified</div>
-          </div>
+        <div className="bg-slate-950 border border-slate-900 p-3 rounded-2xl flex items-center justify-between max-w-md mx-auto">
+          <span className="text-[10px] tracking-wider text-slate-400 uppercase pl-3">Vantrix_Infrastructure_Docs.pdf</span>
           <button 
-            type="button" onClick={handleDownloadProtocol}
-            className="border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 p-2.5 rounded-xl transition-all font-bold text-xs uppercase flex items-center gap-2"
+            onClick={handleDownloadProtocol}
+            className="bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-inner"
           >
-            <Download className="w-3.5 h-3.5" /> DOWNLOAD
+            <Download className="w-3.5 h-3.5 text-cyan-400" /> Download
           </button>
         </div>
-        
-        <form onSubmit={handleFormSubmit} className="space-y-6 bg-slate-950/80 border border-slate-900 p-8 rounded-2xl shadow-2xl relative">
-          {isSubmitting && (
-            <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-md rounded-2xl z-20 flex flex-col items-center justify-center p-6 space-y-4 border border-emerald-500/20">
-              <Flame className="w-8 h-8 text-emerald-400 animate-bounce" />
-              <div className="text-xs font-bold text-emerald-400 tracking-widest text-center animate-pulse">{submitStatus}</div>
-            </div>
-          )}
-          <div>
-            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Operator Signature Name</label>
-            <input type="text" placeholder="e.g. MANTU PATRA" className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40" required />
+
+        <form onSubmit={handleFormSubmit} className="bg-slate-950/60 border border-slate-900 p-8 rounded-3xl space-y-6 shadow-2xl backdrop-blur-md">
+          <div className="space-y-2">
+            <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Operator Signature Name</label>
+            <input 
+              type="text" required placeholder="e.g. MANTU PATRA" 
+              value={operatorName} onChange={(e) => setOperatorName(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all font-mono"
+            />
           </div>
-          <div>
-            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Secure Routing Link (Email)</label>
-            <input type="email" placeholder="operator@domain.com" className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40" required />
+
+          <div className="space-y-2">
+            <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Secure Routing Link (Email)</label>
+            <input 
+              type="email" required placeholder="operator@domain.com" 
+              value={routingLink} onChange={(e) => setRoutingLink(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all font-mono"
+            />
           </div>
-          <div>
-            <label className="block text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Core Optimization Parameters</label>
-            <textarea rows={4} placeholder="Describe exact automation application requirements needing allocation..." className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-100 focus:outline-none focus:border-emerald-500/40 resize-none font-sans" required></textarea>
+
+          <div className="space-y-2">
+            <label className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Core Optimization Parameters</label>
+            <textarea 
+              required rows={4} placeholder="Describe exact automation application requirements needing allocation..." 
+              value={optimizationParams} onChange={(e) => setOptimizationParams(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-900 focus:border-emerald-500/30 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none tracking-wide transition-all resize-none font-mono"
+            />
           </div>
-          <button type="submit" className="w-full border border-emerald-500/40 bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-slate-950 font-black py-4 rounded-xl transition-all uppercase shadow-[0_0_30px_rgba(16,185,129,0.05)] text-xs tracking-widest">
-            Inject Requirements Protocol &rarr;
+
+          <button 
+            type="submit" disabled={isSubmitting}
+            className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(16,185,129,0.2)] disabled:opacity-50"
+          >
+            {isSubmitting ? submitStatus : 'Inject Requirements Protocol →'}
           </button>
         </form>
-        
-        <div className="pt-8 text-center space-y-3 border-t border-slate-900 text-[10px] text-slate-600 font-mono">
-          <div className="flex justify-center gap-6">
-            <div>INSTANCE_LOGS: SECURE</div>
-            <div>SECTOR: INDIA // GLOBAL</div>
-          </div>
-          <div className="tracking-widest text-slate-700 text-[9px] uppercase pt-1">&copy; 2026 VANTRIX AI. OPERATIONAL TERMINAL REPLICA MATRIX.</div>
-        </div>
       </section>
+
+      {/* Footer structural baseline */}
+      <footer className="py-12 border-t border-slate-900 text-center text-[9px] text-slate-600 tracking-widest uppercase relative z-10 bg-[#020617]">
+        <div>Instance_Logs: Secure // Sector: India // Global</div>
+        <div className="mt-2 text-slate-700 font-sans tracking-normal font-medium">© 2026 Vantrix AI. Operational Terminal Replica Matrix.</div>
+      </footer>
 
     </div>
   );
