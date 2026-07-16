@@ -29,7 +29,7 @@ export default function Home() {
   const [visoraLogs, setVisoraLogs] = useState({ state: 'RENDERING_STREAMS', token: '0xVF82', fps: '60 FPS' });
   const [sanolMetrics, setSanolMetrics] = useState({ load: '0.42ms', clusters: '82/84 Active' });
 
-  // Play audio frequency + voice synthesis synthesis greeting
+  // Play audio frequency + voice synthesis greeting
   const triggerVoiceWelcome = () => {
     try {
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
@@ -110,25 +110,53 @@ export default function Home() {
     }, 2000);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  // LINKED TO YOUR LIVE BACKEND RENDER ENDPOINT
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('ENCRYPTING INJECTION SCHEMATICS...');
     
-    setTimeout(() => {
-      setSubmitStatus('ESTABLISHING P2P ENCRYPTED HANDSHAKE...');
+    try {
+      // Pinging the deployed FastAPI endpoint
+      const response = await fetch('https://vantrix-ai-backen.onrender.com/api/v1/automation/handshake', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: operatorName,
+          email: routingLink,
+          parameters: optimizationParams
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('SYS_NET_ERROR: Mainframe verification timeout');
+      }
+
+      const data = await response.json();
       
+      setSubmitStatus('ESTABLISHING P2P ENCRYPTED HANDSHAKE...');
       setTimeout(() => {
         setSubmitStatus('HANDSHAKE SECURED. REDIRECTING ENGINES...');
-        
-        // WhatsApp redirection payload construct matching the new number
-        const baseMessage = `[VANTRIX_OS // INCOMING_CONNECT]\n\nOperator Name: ${operatorName || 'Not Specified'}\nRouting Link: ${routingLink || 'Not Specified'}\nParameters: ${optimizationParams || 'None Specified'}\n\nInitialize sequence execution blueprint.`;
-        const encodedText = encodeURIComponent(baseMessage);
-        
-        // Target endpoint configuration updated successfully
-        window.location.href = `https://wa.me/917377811705?text=${encodedText}`;
-      }, 1000);
-    }, 1000);
+        setTimeout(() => {
+          // Triggering the automated backend WhatsApp payload url
+          window.location.href = data.redirect_url;
+          setIsSubmitting(false);
+        }, 800);
+      }, 800);
+
+    } catch (error) {
+      console.error(error);
+      setSubmitStatus('BYPASSING NETWORK LOCK... DIRECT ROUTE ON');
+      
+      // Fallback route if backend spins down or takes time due to free tier sleep
+      setTimeout(() => {
+        const baseMessage = `[VANTRIX_OS // BYPASS_CONNECT]\n\nOperator Name: ${operatorName}\nRouting Link: ${routingLink}\nParameters: ${optimizationParams}`;
+        window.location.href = `https://wa.me/917377811705?text=${encodeURIComponent(baseMessage)}`;
+        setIsSubmitting(false);
+      }, 1200);
+    }
   };
 
   return (
@@ -147,7 +175,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* NEW: SCI-FI CUSTOM DYNAMIC MODAL */}
+      {/* SCI-FI CUSTOM DYNAMIC MODAL */}
       {showBlueprintModal && (
         <div className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="bg-[#020617] border border-slate-800 rounded-2xl w-full max-w-md p-6 relative space-y-4 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
@@ -253,7 +281,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COMPUTATIONAL HOVER LOG GRID */}
+      {/* COMPUTATIONAL LOG GRID */}
       <section className="py-12 px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 z-10 relative border-t border-slate-900/60">
         <div className="bg-slate-950/40 border border-slate-900 rounded-2xl p-6 space-y-4">
           <span className="text-xs font-bold text-slate-200 border-b border-slate-900 pb-1 block">VISORA_ENGINE</span>
@@ -359,7 +387,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DYNAMIC INTERACT TEST LAYER AREA */}
+      {/* DIAGNOSIS INTERACT BUTTONS */}
       <section className="py-12 px-6 max-w-4xl mx-auto space-y-6 z-10 relative">
         <div className="flex gap-2 justify-center">
           {['json', 'logs', 'ping'].map((tab) => (
@@ -381,7 +409,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DYNAMIC FORM CUSTOMIZER INJECTION INPUT LAYER */}
+      {/* DYNAMIC FORM WITH BACKEND HANDSHAKE */}
       <section id="consultation" className="py-20 px-6 max-w-3xl mx-auto space-y-10 z-10 relative border-t border-slate-900/60">
         <div className="text-center space-y-2">
           <div className="text-[10px] font-bold text-cyan-400 tracking-[0.4em] uppercase">Configuration_Initializer</div>
